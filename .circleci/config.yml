@@ -102,10 +102,10 @@ jobs:
       - restore_cache:
           keys: [frontend-build]
       - run:
-          name: Unit test suite for frontend
+          name:  Scan vulnerability issues on frontend
           command: |
             cd frontend
-            npm audit --audit-level=critical
+            npm audit fix --audit-level=critical --force
 
   scan-backend:
     docker:
@@ -115,10 +115,10 @@ jobs:
       - restore_cache:
           keys: [backend-build]
       - run:
-          name: Unit test suite for backend
+          name: Scan vulnerability issues on backend
           command: |
             cd backend
-            npm audit --audit-level=critical
+            npm audit fix --audit-level=critical --force
 
   deploy-infrastructure:
     docker:
